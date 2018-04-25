@@ -1,0 +1,37 @@
+
+{% if request.logged_in? %}
+
+{% elsif request.sorta_logged_in? %}
+
+<div class="box">
+  Hi <strong>{{ request.current_signup.name_or_email }}.</strong><br/>
+  <div class="social">
+    Sign in with <a href="{{ request.facebook_connect_url }}">Facebook</a>, <a href="{{ request.twitter_connect_url }}">Twitter</a> or <a href="/login">email</a>.<br/>
+    Not {{ request.current_signup.name_or_email }}? <a href="{{ request.current_signup.logout_url }}">click here</a>.
+  </div>
+</div>
+
+{% else %}
+
+<div class="email-signup form">
+  {% form_for signup %}
+  <!-- <div class="form-group"> -->
+<div class="form-group">
+    {% hidden_field_tag "page_id", page.id %} <div class="form-errors">{% error_messages_for signup %}</div>
+    <label for="email_address">Email*</label>{% email_field "email", class:"text", placeholder:"Email address", required: "required" %}
+    <label for="signup_home_address_zip">Postal Code</label>{% text_field "home_address.zip", class:"text", placeholder:"postal code" %}
+
+    <div class="checkbox"><label for="signup_is_volunteer"><input name="signup[is_volunteer]" value="0" type="hidden"><input class="checkbox" id="signup_is_volunteer" name="signup[is_volunteer]" value="0" type="checkbox"> Yes, I'd like to volunteer</label></div>
+
+  </div>
+
+  <div class="form-group">
+    <div class="form-submit">
+      {% submit_tag "Sign Up", class:"submit-button" %}
+    </div>
+  </div>
+
+    {% endform_for %}
+</div>
+
+{% endif %}
