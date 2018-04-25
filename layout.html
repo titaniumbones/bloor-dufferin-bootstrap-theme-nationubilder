@@ -19,20 +19,75 @@
 
     {% include "nav" %}
 
+    {% if page.is_homepage? == true %}
+    <!-- <div class="container-liquid petition-container"> -->
+    <!--   <div class="row"> -->
+    <!--     <iframe src="https://www.change.org/embed/p/13144612/preview" width="300px" height="530px"  frameborder="0"></iframe> -->
+    <!--   </div> -->
+    <!-- </div> -->
+    
+    {% else %}
 
-    {% unless page.type_name == "Donation (v2)" %}
+
+
+    {% endif %}
+
+    
+    {% unless   page.type_name == "Donation (v2)" or page.type_name == "Signup" or page.type_name == "Volunteer Signup" %}
     {% if site.has_header_image? and page.features_count == 0 %}
-    <div class="container header-image-container">
-     <img src="{{ site.header_image_url_1026 }}" class="header-image img-responsive" border="0" />
+    <div class="header-image-container"> <!-- originally also had a "container" class -->
+      <img src="{{ site.header_image_url_1026 }}" class="header-image img-responsive" border="0" />
     </div>
     {% endif %}
     {% endunless %}
-
+    
     {% if page.features_count > 0 %}
-      <div class="container">
+    <!-- <div class="container-fluid"> -->
+      <div class=""></div>
        {% include "features" %}
       </div>
     {% endif %}
+    {% unless   page.type_name == "Donation (v2)" or page.type_name == "Signup" or page.type_name == "Volunteer Signup" %}
+
+    <div class="container-fluid">
+      <div class="row row-aligned row-inverse">
+        <div class="col-md-6 ">
+          <a class="btn btn-primary btn-lg btn-block" href="https://www.change.org/p/kathleen-wynne-fast-track-funding-now-for-bloor-dufferin">Sign the Petition!</a>
+        </div>
+        <div class="col-md-6 ">
+        
+                {% if site.has_signup_page? %}
+                {% if request.sorta_logged_in? %}
+                <div class="participate-form">
+                  <h3>
+                    Hi <a href="{{ request.current_signup.settings_url }}">{{ request.current_signup.name_or_email }}</a>.
+                    {% if site.has_volunteer_page?  %}
+
+                    Sign up for <a class="" href="{{ site.volunteer_page }}">volunteer tasks, view</a>
+                    {% else %}
+                    View
+                    {% endif %}
+                    your
+                    {% if site.show_public_profiles? %}
+                    <a href="{{ request.current_signup.profile_url }}">public profile</a>,
+                    {% endif %}
+                    <a href="{{ request.current_signup.settings_url }}">account settings</a>, or
+                    <a href="{{ request.current_signup.logout_url }}">sign out</a>.
+                    <h3>Are you signed up to help out? <a href="{{ site.signup_page.url }}">Let us know how you can help</a>.</h3>
+                  </h3>
+                </div>
+                {% else %}
+                <h3>Sign up for our mailing list to get all our latest updates!</h3>
+                <div class="participate-form">{% include "signup_form" with site.signup_page %}</div>
+                {% endif %}
+                {% endif %}
+
+          </div>
+        
+        </div>
+
+    </div>
+{% endunless %}
 
     <div class="main-container" id="middle">
       <div class="main container clearfix {% if site.has_background_image? %}well well-lg{% endif %}">
@@ -48,6 +103,9 @@
     </div>
     <!-- .main-container -->
 
+
+
+                
     <footer>
       <div class="container {% if site.has_background_image? %}well well-lg{% endif %}">
 
@@ -106,4 +164,3 @@
 
   </body>
 </html>
-
