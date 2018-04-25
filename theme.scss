@@ -558,7 +558,7 @@ h6.subhead {
 
 
   
-  // some stuff for table-row
+// some stuff for table-row
 
 .row-aligned {
   display: flex;
@@ -570,32 +570,45 @@ h6.subhead {
   }
 }
 
-  // add shadow to slide headers
+// add shadow to slide headers
 .carousel-caption {
-  background: rgba(0,0,0,0.6);
-  border-radius: 10px;
-  top: 30vh;
-  bottom: auto;
+    background: rgba(0,0,0,0.6);
+    border-radius: 10px;
+    top: 30vh;
+    bottom: auto;
 }
 
 
-  // try to fix the signupbox
+// try to fix the signupbox
 .row-inverse {
-  background-color: $navbar-inverse-bg;
-  border-color: $navbar-inverse-border;
-  color: $navbar-inverse-color;
-  border-top: $gray-lighter 3px solid;
-
-  .navbar-text {
+    background-color: $navbar-inverse-bg;
+    border-color: $navbar-inverse-border;
     color: $navbar-inverse-color;
-  }
+    border-top: $gray-lighter 3px solid;
+
+    .navbar-text {
+        color: $navbar-inverse-color;
+    }
 }
 
 
-  // some stuff for petition
+// some stuff for petition
 .petition-container iframe {
-  border: 2px $gray-darker solid;
-  margin-right: auto;
-  margin-left: auto;
-  display: inherit;
-  }
+    border: 2px $gray-darker solid;
+    margin-right: auto;
+    margin-left: auto;
+    display: inherit;
+}
+
+// fix long button text
+// https://stackoverflow.com/questions/1147877/how-to-word-wrap-text-in-html
+.btn {
+    white-space: normal;
+}
+
+
+
+
+
+
+
